@@ -1,4 +1,7 @@
-const io = require('socket.io')(8000);
+let port=process.env.PORT;
+port=8000;
+const io = require('socket.io')(port);
+console.log(port)
 const users = {};
 
 io.on('connection', socket => {
