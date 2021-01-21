@@ -1,11 +1,10 @@
-// const port=process.env.PORT;
-const socket = io(`http://localhost:8000`);
+const socket = io();
 
 let form = document.getElementById('myForm');
-let sendBtn = document.getElementById('sendBtn');
+let sendBtn = document.getElementById('sendlogo');
 let msg = document.getElementById('msgInput');
 let container = document.getElementsByClassName('container')[0];
-let tone = new Audio('tone.mp3');
+let tone = new Audio('/includes/tone.mp3');
 
 
 const append = (msg, pos) => {
@@ -17,8 +16,8 @@ const append = (msg, pos) => {
 	if (pos == 'left') {
 		tone.play();
 	}
+	container.scrollTop = container.scrollHeight - container.clientHeight;
 };
-
 
 const name = prompt("Enter Your name");
 socket.emit('userJoin', name);
@@ -36,20 +35,20 @@ socket.on('left', name => {
 	append(`${name} is left the chat`, 'left');
 });
 
-
-form.addEventListener('submit', e => {
-	e.preventDefault;
+form.addEventListener('submit',e => {
+	e.preventDefault();
 	const message = msg.value;
-	if(message!="") {
+	if (message != "") {
 		append(`You : ${message}`, 'right');
 		socket.emit('send', message)
 		msg.value = '';
 	}
-});
+})
+
 sendBtn.addEventListener('click', e => {
-	e.preventDefault;
+	e.preventDefault();
 	const message = msg.value;
-	if (message!="") {
+	if (message != "") {
 		append(`You : ${message}`, 'right');
 		socket.emit('send', message)
 		msg.value = '';

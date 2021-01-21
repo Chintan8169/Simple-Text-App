@@ -1,8 +1,15 @@
-let port=process.env.PORT;
-port=8000;
-const io = require('socket.io')(port);
-console.log(port)
+let port=process.env.PORT || 8000;
+const socketio = require('socket.io');
+const express=require('express');
+const http=require('http');
+const path=require('path');
 const users = {};
+
+const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
+
+app.use(express.static(path.join(__dirname,"views")));
 
 io.on('connection', socket => {
 	socket.on('userJoin', name => {
@@ -20,3 +27,4 @@ io.on('connection', socket => {
 	});
 });
 
+server.listen(port, () => console.log(`Server running on port ${port}`));
