@@ -9,7 +9,7 @@ let tone = new Audio('/includes/tone.mp3');
 
 const append = (msg, pos) => {
 	const msgele = document.createElement('div');
-	msgele.innerText = msg;
+	msgele.innerHTML = msg;
 	msgele.classList.add('message');
 	msgele.classList.add(pos);
 	container.append(msgele);
@@ -27,7 +27,7 @@ socket.on('joined', name => {
 
 
 socket.on('recieved', data => {
-	append(`${data.name} : ${data.message}`, 'left');
+	append(`${data.name}<br>${data.message}`, 'left');
 });
 
 
@@ -39,7 +39,7 @@ form.addEventListener('submit',e => {
 	e.preventDefault();
 	const message = msg.value;
 	if (message != "") {
-		append(`You : ${message}`, 'right');
+		append(`You<br>${message}`, 'right');
 		socket.emit('send', message)
 		msg.value = '';
 	}
@@ -49,7 +49,7 @@ sendBtn.addEventListener('click', e => {
 	e.preventDefault();
 	const message = msg.value;
 	if (message != "") {
-		append(`You : ${message}`, 'right');
+		append(`You<br>${message}`, 'right');
 		socket.emit('send', message)
 		msg.value = '';
 	}

@@ -47,6 +47,7 @@ nav h1 {
 	font-size: 1.3rem;
 	letter-spacing: 1px;
 	text-align: justify;
+	word-wrap: break-word;
 	border: 1px solid black;
 	border-radius: 10px;
 	width: 45%;
