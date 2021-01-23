@@ -27,7 +27,7 @@ socket.on('joined', name => {
 
 
 socket.on('recieved', data => {
-	append(`${data.name}<br>${data.message}`, 'left');
+	append(`${data.name} :<br>${data.message}`, 'left');
 });
 
 
@@ -39,7 +39,7 @@ form.addEventListener('submit',e => {
 	e.preventDefault();
 	const message = msg.value;
 	if (message != "") {
-		append(`You<br>${message}`, 'right');
+		append(`You :<br>${message}`, 'right');
 		socket.emit('send', message)
 		msg.value = '';
 	}
