@@ -42,6 +42,7 @@ form.addEventListener('submit',e => {
 		append(`You :<br>${message}`, 'right');
 		socket.emit('send', message)
 		msg.value = '';
+		msg.focus();
 	}
 })
 
@@ -52,5 +53,6 @@ sendBtn.addEventListener('click', e => {
 		append(`You<br>${message}`, 'right');
 		socket.emit('send', message)
 		msg.value = '';
+		msg.focus();
 	}
 });
